@@ -246,30 +246,30 @@ global proc v_off(){for($aa in `ls-sl`){setAttr ($aa+".visibility") 0;}}
 //ChannelSetc
 
 ////////////////////////////////////////////////////////////////
-global proc pose2shelf(){
-	if(`window -ex custButtonWin`){deleteUI custButtonWin;}
-	else if(`windowPref -ex custButtonWin`){windowPref -r custButtonWin;}
+global proc posegooshelf(){
+	if(`window -ex setbuttonWindow`){deleteUI setbuttonWindow;}
+	else if(`windowPref -ex setbuttonWindow`){windowPref -r setbuttonWindow;}
 	window 
 		-w 200
-		-title ("p2s") 
-		-s 0 custButtonWin;
+		-title ("setposesss") 
+		-s 0 setbuttonWindow;
 	columnLayout; 
 	text "Optional Label:";
 	textField 
 	-w 100
-	"_custButtonWin";
+	"_setbuttonWindow";
 	button 
 	-h 35
 	-w 100
 	-ann "Save Selected Node's \"setAttr\" Commands to a Shelf Button."
-	-label "pose2shelf."
-	-c ("saveSelectedNodeAttrsToShelf( `textField -q -tx _custButtonWin` );");
+	-label "posegooshelf."
+	-c ("saveSelectedNodeAttrsToShelf( `textField -q -tx _setbuttonWindow` );");
 	text "Or";
 	button 
 	-w 100
 	-ann "Save Current Selection's Selection Commands as a Shelf Button."
 	-label "selection2shelf."
-	-c ("saveNodeSelectionToShelf( `textField -q -tx _custButtonWin` );");
+	-c ("saveNodeSelectionToShelf( `textField -q -tx _setbuttonWindow` );");
 	button 
 	-w 100
 	-ann "Save Current Selection's Selection Commands as a Shelf Button."
@@ -362,22 +362,22 @@ global proc string saveNodeSelectionToShelf(string $label){
 	}
 	return $safeShelfCommand;
 }
-global proc install_pose2shelf(){
+global proc install_posegooshelf(){
 	global string $gShelfTopLevel;
 	if(`tabLayout -exists $gShelfTopLevel`){
 		shelfButton
 		-parent ($gShelfTopLevel + "|" + `tabLayout -q -st $gShelfTopLevel`)
 		-label "p2s"
 		-iol "p2s"
-		-command "pose2shelf"
+		-command "posegooshelf"
 		-image1 "menuiconcopy.xpm"
 		-annotation "Quickly and easily label and save selected pose or selection commands for characters and controls as re-usable shelf buttons.";
 	}else{
 		error "You need a shelf";
 	}
-}install_pose2shelf;
+}install_posegooshelf;
 
-//pose2shelf
+//posegooshelf
 ////////////////////////////////////////////////////////////////
 global proc zaixuanobj(){
 global string $seleobj[];
